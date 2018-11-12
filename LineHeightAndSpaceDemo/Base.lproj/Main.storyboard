@@ -9,16 +9,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Change Line SpaceVC-->
+        <!--Change Line HeightVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ChangeLineSpaceVC" customModule="LineHeightAndSpaceDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ChangeLineHeightVC" customModule="LineHeightAndSpaceDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xtc-gi-h5R">
-                                <rect key="frame" x="20" y="262.5" width="335" height="142.5"/>
+                                <rect key="frame" x="20" y="120" width="335" height="142.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">相信你一定试用过印象笔记吧？印象笔记有一个高级功能叫做「演示模式」，就是把笔记全屏预览出来，让笔记内容可以直接用来进行会议讲解，但是这个功能需要你成为高级会员才能使用。
 
 https://sspai.com/post/32193</string>
@@ -30,9 +31,8 @@ https://sspai.com/post/32193</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Xtc-gi-h5R" secondAttribute="trailing" constant="20" id="NEB-oX-jAy"/>
-                            <constraint firstItem="Xtc-gi-h5R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lHU-E3-Lw5"/>
+                            <constraint firstItem="Xtc-gi-h5R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="ggm-99-cJo"/>
                             <constraint firstItem="Xtc-gi-h5R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="sf8-BE-Puo"/>
-                            <constraint firstItem="Xtc-gi-h5R" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ySN-r1-bwK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

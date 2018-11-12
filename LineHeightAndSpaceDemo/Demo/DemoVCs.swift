@@ -33,3 +33,30 @@ class ChangeLineSpaceVC: ViewController {
         label.attributedText = attributedText
     }
 }
+
+class ChangeLineHeightVC: ViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setLineHeight(to: 30)
+    }
+    
+    func setLineHeight(to lineHeight: CGFloat) {
+        let attributedText = NSMutableAttributedString(string: label.text ?? "")
+        
+        let style = NSMutableParagraphStyle()
+        style.maximumLineHeight = lineHeight
+        style.minimumLineHeight = lineHeight
+        
+        let adjustBaselineOffset = (lineHeight - label.font.lineHeight) / 4
+        
+        let fullRange = attributedText.string.range(of: attributedText.string)!
+        
+        attributedText.addAttributes([
+            NSAttributedString.Key.paragraphStyle: style,
+            NSAttributedString.Key.baselineOffset: adjustBaselineOffset
+            ], range: NSRange(fullRange, in: attributedText.string))
+        
+        label.attributedText = attributedText
+    }
+}
