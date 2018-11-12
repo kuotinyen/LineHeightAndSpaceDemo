@@ -15,22 +15,12 @@ class ChangeLineSpaceVC: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       setLineSpace(to: 10)
+        setLineSpace(to: 10)
     }
     
     func setLineSpace(to lineSpace: CGFloat) {
-        let attributedText = NSMutableAttributedString(string: label.text ?? "")
-        
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 10 - (label.font.lineHeight - label.font.pointSize)
-        
-        let fullRange = attributedText.string.range(of: attributedText.string)!
-        
-        attributedText.addAttributes([
-            NSAttributedString.Key.paragraphStyle: style
-            ], range: NSRange(fullRange, in: attributedText.string))
-        
-        label.attributedText = attributedText
+        guard let string = label.text else { return }
+        label.attributedText = NSMutableAttributedString(string: string).setLineSpacing(20, font: label.font)
     }
 }
 
@@ -42,21 +32,51 @@ class ChangeLineHeightVC: ViewController {
     }
     
     func setLineHeight(to lineHeight: CGFloat) {
-        let attributedText = NSMutableAttributedString(string: label.text ?? "")
+        guard let string = label.text else { return }
+        label.attributedText = NSMutableAttributedString(string: string).setLineHeight(60, font: label.font)
+    }
+}
+
+extension NSMutableParagraphStyle {
+    
+    @discardableResult
+    func lineSpacing(_ lineSpacing: CGFloat, font: UIFont) -> Self {
+        self.lineSpacing = lineSpacing - (font.lineHeight - font.pointSize)
         
-        let style = NSMutableParagraphStyle()
-        style.maximumLineHeight = lineHeight
-        style.minimumLineHeight = lineHeight
+        return self
+    }
+    
+    @discardableResult
+    func lineHeight(_ lineHeight: CGFloat, font: UIFont) -> Self {
+        self.maximumLineHeight = lineHeight
+        self.minimumLineHeight = lineHeight
         
-        let adjustBaselineOffset = (lineHeight - label.font.lineHeight) / 4
+        return self
+    }
+}
+
+extension NSMutableAttributedString {
+    
+    @discardableResult
+    func setLineSpacing(_ lineSpace: CGFloat, font: UIFont) -> Self {
+        let lineSpacingStyle = NSMutableParagraphStyle().lineSpacing(lineSpace, font: font)
         
-        let fullRange = attributedText.string.range(of: attributedText.string)!
+        let fullRange = self.string.range(of: self.string)!
+        self.addAttribute(NSAttributedString.Key.paragraphStyle, value: lineSpacingStyle, range: NSRange(fullRange, in: self.string))
         
-        attributedText.addAttributes([
-            NSAttributedString.Key.paragraphStyle: style,
-            NSAttributedString.Key.baselineOffset: adjustBaselineOffset
-            ], range: NSRange(fullRange, in: attributedText.string))
+        return self
+    }
+    
+    @discardableResult
+    func setLineHeight(_ lineHeight: CGFloat, font: UIFont) -> Self {
+        let lineSpacingStyle = NSMutableParagraphStyle().lineHeight(lineHeight, font: font)
         
-        label.attributedText = attributedText
+        let adjustBaselineOffset = (lineHeight - font.lineHeight) / 4
+        
+        let fullRange = self.string.range(of: self.string)!
+        self.addAttribute(NSAttributedString.Key.paragraphStyle, value: lineSpacingStyle, range: NSRange(fullRange, in: self.string))
+        self.addAttribute(NSAttributedString.Key.baselineOffset, value: adjustBaselineOffset, range: NSRange(fullRange, in: self.string))
+        
+        return self
     }
 }
